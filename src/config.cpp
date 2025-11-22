@@ -6,6 +6,7 @@
 #include <shlwapi.h>
 #include <sstream>
 #include <algorithm>
+#include <memory>
 
 // Initialisation des membres statiques
 std::vector<std::wstring> ConfigManager::s_authorizedSerials;
