@@ -7,6 +7,8 @@
 #include <iostream>
 #include <iomanip>
 #include <windows.h>
+#include <io.h>
+#include <fcntl.h>
 
 void printSeparator() {
     std::wcout << L"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << std::endl;
