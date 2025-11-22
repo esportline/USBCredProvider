@@ -1,0 +1,5 @@
+LIBRARY "USBCredProvider"
+
+EXPORTS
+    DllCanUnloadNow     PRIVATE
+    DllGetClassObject   PRIVATE
