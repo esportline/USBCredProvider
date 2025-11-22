@@ -6,6 +6,7 @@
 #include "USBCredential.h"
 #include "guid.h"
 #include "common.h"
+#include <new>
 
 CUSBCredentialProvider::CUSBCredentialProvider() :
     _cRef(1),

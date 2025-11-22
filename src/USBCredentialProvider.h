@@ -45,7 +45,7 @@ public:
 
 protected:
     CUSBCredentialProvider();
-    __override ~CUSBCredentialProvider();
+    ~CUSBCredentialProvider();
 
 private:
     // Crée les credentials énumérées
