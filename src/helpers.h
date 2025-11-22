@@ -4,49 +4,6 @@
 
 #pragma once
 
-// MinGW compatibility: Define missing constants
-#ifndef CPFG_CREDENTIAL_PROVIDER_LOGO
-#define CPFG_CREDENTIAL_PROVIDER_LOGO 0
-#endif
-
-#ifndef CPFG_CREDENTIAL_PROVIDER_LABEL
-#define CPFG_CREDENTIAL_PROVIDER_LABEL 1
-#endif
-
-#ifndef UNLEN
-#define UNLEN 256
-#endif
-
-// MinGW compatibility: Define old-style SAL annotations if not already defined
-#ifndef __in
-#define __in
-#define __in_opt
-#define __out
-#define __out_opt
-#define __inout
-#define __inout_opt
-#define __deref_out
-#define __deref_out_opt
-#define __in_ecount(x)
-#define __out_ecount(x)
-#define __deref_out_range(x,y)
-#define __in_bcount(x)
-#define __out_bcount(x)
-#define __in_range(x,y)
-#define __in_reads(x)
-#define __in_reads_opt(x)
-#define __in_reads_bytes(x)
-#define __in_reads_bytes_opt(x)
-#define __out_writes(x)
-#define __out_writes_opt(x)
-#define __out_writes_bytes(x)
-#define __out_writes_bytes_opt(x)
-#define __deref_in_range(x,y)
-#define __field_ecount(x)
-#define __field_bcount(x)
-#define __override
-#endif
-
 #pragma warning(push)
 #pragma warning(disable : 28251)
 #include <credentialprovider.h>
@@ -69,6 +26,50 @@
 #pragma warning(disable : 28301)
 #include <wincred.h>
 #pragma warning(pop)
+
+// MinGW compatibility: Define missing constants AFTER Windows headers
+#ifndef CPFG_CREDENTIAL_PROVIDER_LOGO
+#define CPFG_CREDENTIAL_PROVIDER_LOGO 0
+#endif
+
+#ifndef CPFG_CREDENTIAL_PROVIDER_LABEL
+#define CPFG_CREDENTIAL_PROVIDER_LABEL 1
+#endif
+
+#ifndef UNLEN
+#define UNLEN 256
+#endif
+
+// MinGW compatibility: Map old-style SAL annotations to modern ones
+// These are defined AFTER all system headers to avoid conflicts with STL
+#ifndef __in
+#define __in _In_
+#define __in_opt _In_opt_
+#define __out _Out_
+#define __out_opt _Out_opt_
+#define __inout _Inout_
+#define __inout_opt _Inout_opt_
+#define __deref_out _Outptr_
+#define __deref_out_opt _Outptr_opt_
+#define __in_ecount(x) _In_reads_(x)
+#define __out_ecount(x) _Out_writes_(x)
+#define __deref_out_range(x,y)
+#define __in_bcount(x) _In_reads_bytes_(x)
+#define __out_bcount(x) _Out_writes_bytes_(x)
+#define __in_range(x,y)
+#define __in_reads(x) _In_reads_(x)
+#define __in_reads_opt(x) _In_reads_opt_(x)
+#define __in_reads_bytes(x) _In_reads_bytes_(x)
+#define __in_reads_bytes_opt(x) _In_reads_bytes_opt_(x)
+#define __out_writes(x) _Out_writes_(x)
+#define __out_writes_opt(x) _Out_writes_opt_(x)
+#define __out_writes_bytes(x) _Out_writes_bytes_(x)
+#define __out_writes_bytes_opt(x) _Out_writes_bytes_opt_(x)
+#define __deref_in_range(x,y)
+#define __field_ecount(x)
+#define __field_bcount(x)
+#define __override override
+#endif
 
 HRESULT FieldDescriptorCoAllocCopy(
     _In_ const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
