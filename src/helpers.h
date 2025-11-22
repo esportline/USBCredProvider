@@ -4,6 +4,49 @@
 
 #pragma once
 
+// MinGW compatibility: Define missing constants
+#ifndef CPFG_CREDENTIAL_PROVIDER_LOGO
+#define CPFG_CREDENTIAL_PROVIDER_LOGO 0
+#endif
+
+#ifndef CPFG_CREDENTIAL_PROVIDER_LABEL
+#define CPFG_CREDENTIAL_PROVIDER_LABEL 1
+#endif
+
+#ifndef UNLEN
+#define UNLEN 256
+#endif
+
+// MinGW compatibility: Define old-style SAL annotations if not already defined
+#ifndef __in
+#define __in
+#define __in_opt
+#define __out
+#define __out_opt
+#define __inout
+#define __inout_opt
+#define __deref_out
+#define __deref_out_opt
+#define __in_ecount(x)
+#define __out_ecount(x)
+#define __deref_out_range(x,y)
+#define __in_bcount(x)
+#define __out_bcount(x)
+#define __in_range(x,y)
+#define __in_reads(x)
+#define __in_reads_opt(x)
+#define __in_reads_bytes(x)
+#define __in_reads_bytes_opt(x)
+#define __out_writes(x)
+#define __out_writes_opt(x)
+#define __out_writes_bytes(x)
+#define __out_writes_bytes_opt(x)
+#define __deref_in_range(x,y)
+#define __field_ecount(x)
+#define __field_bcount(x)
+#define __override
+#endif
+
 #pragma warning(push)
 #pragma warning(disable : 28251)
 #include <credentialprovider.h>
