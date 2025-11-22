@@ -5,6 +5,11 @@
 #include "helpers.h"
 #include <intsafe.h>
 
+// MinGW compatibility: Define missing constant
+#ifndef CRED_PACK_WOW_BUFFER
+#define CRED_PACK_WOW_BUFFER 0x1
+#endif
+
 //
 // Copies the field descriptor pointed to by rcpfd into a buffer allocated
 // using CoTaskMemAlloc. Returns that buffer in ppcpfd.
