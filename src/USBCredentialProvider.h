@@ -24,24 +24,24 @@ public:
         return cRef;
     }
 
-    IFACEMETHODIMP QueryInterface(_In_ REFIID riid, _Outptr_ void** ppv);
+    IFACEMETHODIMP QueryInterface(REFIID riid, void** ppv);
 
     // ICredentialProvider
-    IFACEMETHODIMP SetUsageScenario(_In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus, _In_ DWORD dwFlags);
-    IFACEMETHODIMP SetSerialization(_In_ const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs);
+    IFACEMETHODIMP SetUsageScenario(CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus, DWORD dwFlags);
+    IFACEMETHODIMP SetSerialization(const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs);
 
-    IFACEMETHODIMP Advise(_In_ ICredentialProviderEvents* pcpe, _In_ UINT_PTR upAdviseContext);
+    IFACEMETHODIMP Advise(ICredentialProviderEvents* pcpe, UINT_PTR upAdviseContext);
     IFACEMETHODIMP UnAdvise();
 
-    IFACEMETHODIMP GetFieldDescriptorCount(_Out_ DWORD* pdwCount);
-    IFACEMETHODIMP GetFieldDescriptorAt(_In_ DWORD dwIndex, _Outptr_ CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR** ppcpfd);
+    IFACEMETHODIMP GetFieldDescriptorCount(DWORD* pdwCount);
+    IFACEMETHODIMP GetFieldDescriptorAt(DWORD dwIndex, CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR** ppcpfd);
 
-    IFACEMETHODIMP GetCredentialCount(_Out_ DWORD* pdwCount,
-                                       _Out_ DWORD* pdwDefault,
-                                       _Out_ BOOL* pbAutoLogonWithDefault);
-    IFACEMETHODIMP GetCredentialAt(_In_ DWORD dwIndex, _Outptr_ ICredentialProviderCredential** ppcpc);
+    IFACEMETHODIMP GetCredentialCount(DWORD* pdwCount,
+                                       DWORD* pdwDefault,
+                                       BOOL* pbAutoLogonWithDefault);
+    IFACEMETHODIMP GetCredentialAt(DWORD dwIndex, ICredentialProviderCredential** ppcpc);
 
-    friend HRESULT CSample_CreateInstance(_In_ REFIID riid, _Outptr_ void** ppv);
+    friend HRESULT CSample_CreateInstance(REFIID riid, void** ppv);
 
 protected:
     CUSBCredentialProvider();

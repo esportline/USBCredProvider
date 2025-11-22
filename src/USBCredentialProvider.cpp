@@ -24,7 +24,7 @@ CUSBCredentialProvider::~CUSBCredentialProvider() {
     DllRelease();
 }
 
-HRESULT CUSBCredentialProvider::QueryInterface(_In_ REFIID riid, _Outptr_ void** ppv) {
+HRESULT CUSBCredentialProvider::QueryInterface(REFIID riid, void** ppv) {
     static const QITAB qit[] = {
         QITABENT(CUSBCredentialProvider, ICredentialProvider),
         {0},
@@ -33,8 +33,8 @@ HRESULT CUSBCredentialProvider::QueryInterface(_In_ REFIID riid, _Outptr_ void**
 }
 
 HRESULT CUSBCredentialProvider::SetUsageScenario(
-    _In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
-    _In_ DWORD dwFlags) {
+    CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
+    DWORD dwFlags) {
 
     HRESULT hr;
 
@@ -67,14 +67,14 @@ HRESULT CUSBCredentialProvider::SetUsageScenario(
 }
 
 HRESULT CUSBCredentialProvider::SetSerialization(
-    _In_ const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs) {
+    const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs) {
     UNREFERENCED_PARAMETER(pcpcs);
     return E_NOTIMPL;
 }
 
 HRESULT CUSBCredentialProvider::Advise(
-    _In_ ICredentialProviderEvents* pcpe,
-    _In_ UINT_PTR upAdviseContext) {
+    ICredentialProviderEvents* pcpe,
+    UINT_PTR upAdviseContext) {
     UNREFERENCED_PARAMETER(pcpe);
     UNREFERENCED_PARAMETER(upAdviseContext);
     return E_NOTIMPL;
@@ -84,14 +84,14 @@ HRESULT CUSBCredentialProvider::UnAdvise() {
     return E_NOTIMPL;
 }
 
-HRESULT CUSBCredentialProvider::GetFieldDescriptorCount(_Out_ DWORD* pdwCount) {
+HRESULT CUSBCredentialProvider::GetFieldDescriptorCount(DWORD* pdwCount) {
     *pdwCount = SFI_NUM_FIELDS;
     return S_OK;
 }
 
 HRESULT CUSBCredentialProvider::GetFieldDescriptorAt(
-    _In_ DWORD dwIndex,
-    _Outptr_ CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR** ppcpfd) {
+    DWORD dwIndex,
+    CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR** ppcpfd) {
 
     *ppcpfd = nullptr;
 
@@ -103,9 +103,9 @@ HRESULT CUSBCredentialProvider::GetFieldDescriptorAt(
 }
 
 HRESULT CUSBCredentialProvider::GetCredentialCount(
-    _Out_ DWORD* pdwCount,
-    _Out_ DWORD* pdwDefault,
-    _Out_ BOOL* pbAutoLogonWithDefault) {
+    DWORD* pdwCount,
+    DWORD* pdwDefault,
+    BOOL* pbAutoLogonWithDefault) {
 
     *pdwCount = 0;
     *pdwDefault = CREDENTIAL_PROVIDER_NO_DEFAULT;
@@ -126,8 +126,8 @@ HRESULT CUSBCredentialProvider::GetCredentialCount(
 }
 
 HRESULT CUSBCredentialProvider::GetCredentialAt(
-    _In_ DWORD dwIndex,
-    _Outptr_ ICredentialProviderCredential** ppcpc) {
+    DWORD dwIndex,
+    ICredentialProviderCredential** ppcpc) {
 
     *ppcpc = nullptr;
 
@@ -177,7 +177,7 @@ void CUSBCredentialProvider::_ReleaseEnumeratedCredentials() {
 }
 
 // Fonction de création appelée par la factory
-HRESULT CSample_CreateInstance(_In_ REFIID riid, _Outptr_ void** ppv) {
+HRESULT CSample_CreateInstance(REFIID riid, void** ppv) {
     HRESULT hr;
 
     CUSBCredentialProvider* pProvider = new (std::nothrow) CUSBCredentialProvider();

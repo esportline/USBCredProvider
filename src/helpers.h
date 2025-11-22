@@ -41,61 +41,61 @@
 #endif
 
 HRESULT FieldDescriptorCoAllocCopy(
-    _In_ const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
-    _Outptr_result_nullonfailure_ CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR **ppcpfd
+    const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
+    CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR **ppcpfd
 );
 
 HRESULT FieldDescriptorCopy(
-    _In_ const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
-    _Out_ CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR *pcpfd
+    const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
+    CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR *pcpfd
 );
 
 HRESULT UnicodeStringInitWithString(
-    _In_ PWSTR pwz,
-    _Out_ UNICODE_STRING *pus
+    PWSTR pwz,
+    UNICODE_STRING *pus
 );
 
 HRESULT KerbInteractiveUnlockLogonInit(
-    _In_ PWSTR pwzDomain,
-    _In_ PWSTR pwzUsername,
-    _In_ PWSTR pwzPassword,
-    _In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
-    _Out_ KERB_INTERACTIVE_UNLOCK_LOGON *pkiul
+    PWSTR pwzDomain,
+    PWSTR pwzUsername,
+    PWSTR pwzPassword,
+    CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
+    KERB_INTERACTIVE_UNLOCK_LOGON *pkiul
 );
 
 HRESULT KerbInteractiveUnlockLogonPack(
-    _In_ const KERB_INTERACTIVE_UNLOCK_LOGON &rkiulIn,
-    _Outptr_result_bytebuffer_(*pcb) BYTE **prgb,
-    _Out_ DWORD *pcb
+    const KERB_INTERACTIVE_UNLOCK_LOGON &rkiulIn,
+    BYTE **prgb,
+    DWORD *pcb
 );
 
 HRESULT RetrieveNegotiateAuthPackage(
-    _Out_ ULONG *pulAuthPackage
+    ULONG *pulAuthPackage
 );
 
 HRESULT ProtectIfNecessaryAndCopyPassword(
-    _In_ PCWSTR pwzPassword,
-    _In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
-    _Outptr_result_nullonfailure_ PWSTR *ppwzProtectedPassword
+    PCWSTR pwzPassword,
+    CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
+    PWSTR *ppwzProtectedPassword
 );
 
 HRESULT KerbInteractiveUnlockLogonRepackNative(
-    _In_reads_bytes_(cbWow) BYTE *rgbWow,
-    _In_ DWORD cbWow,
-    _Outptr_result_bytebuffer_(*pcbNative) BYTE **prgbNative,
-    _Out_ DWORD *pcbNative
+    BYTE *rgbWow,
+    DWORD cbWow,
+    BYTE **prgbNative,
+    DWORD *pcbNative
 );
 
 void KerbInteractiveUnlockLogonUnpackInPlace(
-    _Inout_updates_bytes_(cb) KERB_INTERACTIVE_UNLOCK_LOGON *pkiul,
+    KERB_INTERACTIVE_UNLOCK_LOGON *pkiul,
     DWORD cb
 );
 
 HRESULT DomainUsernameStringAlloc(
-    _In_ PCWSTR pwszDomain,
-    _In_ PCWSTR pwszUsername,
-    _Outptr_result_nullonfailure_ PWSTR *ppwszDomainUsername
+    PCWSTR pwszDomain,
+    PCWSTR pwszUsername,
+    PWSTR *ppwszDomainUsername
 );
 
-HRESULT SplitDomainAndUsername(_In_ PCWSTR pszQualifiedUserName, _Outptr_result_nullonfailure_ PWSTR *ppszDomain,
-                               _Outptr_result_nullonfailure_ PWSTR *ppszUsername);
+HRESULT SplitDomainAndUsername(PCWSTR pszQualifiedUserName, PWSTR *ppszDomain,
+                               PWSTR *ppszUsername);

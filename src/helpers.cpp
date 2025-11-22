@@ -15,8 +15,8 @@
 // using CoTaskMemAlloc. Returns that buffer in ppcpfd.
 //
 HRESULT FieldDescriptorCoAllocCopy(
-    _In_ const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
-    _Outptr_result_nullonfailure_ CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR **ppcpfd
+    const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
+    CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR **ppcpfd
 ) {
     HRESULT hr;
     *ppcpfd = nullptr;
@@ -53,8 +53,8 @@ HRESULT FieldDescriptorCoAllocCopy(
 // pcpfd->pszLabel.
 //
 HRESULT FieldDescriptorCopy(
-    _In_ const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
-    _Out_ CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR *pcpfd
+    const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR &rcpfd,
+    CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR *pcpfd
 ) {
     HRESULT hr;
     CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR cpfd;
@@ -85,8 +85,8 @@ HRESULT FieldDescriptorCopy(
 // exact GetSerialization call where the sample uses it.
 //
 HRESULT UnicodeStringInitWithString(
-    _In_ PWSTR pwz,
-    _Out_ UNICODE_STRING *pus
+    PWSTR pwz,
+    UNICODE_STRING *pus
 ) {
     HRESULT hr;
     if (pwz) {
@@ -142,11 +142,11 @@ static void _UnicodeStringPackedUnicodeStringCopy(
 // because we cannot know whether our caller can accept encrypted credentials.
 //
 HRESULT KerbInteractiveUnlockLogonInit(
-    _In_ PWSTR pwzDomain,
-    _In_ PWSTR pwzUsername,
-    _In_ PWSTR pwzPassword,
-    _In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
-    _Out_ KERB_INTERACTIVE_UNLOCK_LOGON *pkiul
+    PWSTR pwzDomain,
+    PWSTR pwzUsername,
+    PWSTR pwzPassword,
+    CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
+    KERB_INTERACTIVE_UNLOCK_LOGON *pkiul
 ) {
     KERB_INTERACTIVE_UNLOCK_LOGON kiul;
     ZeroMemory(&kiul, sizeof(kiul));
@@ -225,9 +225,9 @@ HRESULT KerbInteractiveUnlockLogonInit(
 //
 
 HRESULT KerbInteractiveUnlockLogonPack(
-    _In_ const KERB_INTERACTIVE_UNLOCK_LOGON &rkiulIn,
-    _Outptr_result_bytebuffer_(*pcb) BYTE **prgb,
-    _Out_ DWORD *pcb
+    const KERB_INTERACTIVE_UNLOCK_LOGON &rkiulIn,
+    BYTE **prgb,
+    DWORD *pcb
 ) {
     HRESULT hr;
 
@@ -307,7 +307,7 @@ static HRESULT _LsaInitString(
 // For more information on auth packages see this msdn page:
 // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/secauthn/security/msv1_0_lm20_logon.asp
 //
-HRESULT RetrieveNegotiateAuthPackage(_Out_ ULONG *pulAuthPackage) {
+HRESULT RetrieveNegotiateAuthPackage(ULONG *pulAuthPackage) {
     HRESULT hr;
     HANDLE hLsa;
 
@@ -338,8 +338,8 @@ HRESULT RetrieveNegotiateAuthPackage(_Out_ ULONG *pulAuthPackage) {
 // pwzToProtect must not be NULL or the empty string.
 //
 static HRESULT _ProtectAndCopyString(
-    _In_ PCWSTR pwzToProtect,
-    _Outptr_result_nullonfailure_ PWSTR *ppwzProtected
+    PCWSTR pwzToProtect,
+    PWSTR *ppwzProtected
 ) {
     *ppwzProtected = nullptr;
 
@@ -395,9 +395,9 @@ static HRESULT _ProtectAndCopyString(
 // If not, just return a copy.
 //
 HRESULT ProtectIfNecessaryAndCopyPassword(
-    _In_ PCWSTR pwzPassword,
-    _In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
-    _Outptr_result_nullonfailure_ PWSTR *ppwzProtectedPassword
+    PCWSTR pwzPassword,
+    CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
+    PWSTR *ppwzProtectedPassword
 ) {
     *ppwzProtectedPassword = nullptr;
 
@@ -446,7 +446,7 @@ HRESULT ProtectIfNecessaryAndCopyPassword(
 // memory space boundary is not going to work -- repack it if necessary!
 //
 void KerbInteractiveUnlockLogonUnpackInPlace(
-    _Inout_updates_bytes_(cb) KERB_INTERACTIVE_UNLOCK_LOGON *pkiul,
+    KERB_INTERACTIVE_UNLOCK_LOGON *pkiul,
     DWORD cb
 ) {
     if (sizeof(*pkiul) <= cb) {
@@ -477,10 +477,10 @@ void KerbInteractiveUnlockLogonUnpackInPlace(
 // cred blob into a 64 bit native blob by unpacking it and immediately repacking it.
 //
 HRESULT KerbInteractiveUnlockLogonRepackNative(
-    _In_reads_bytes_(cbWow) BYTE *rgbWow,
-    _In_ DWORD cbWow,
-    _Outptr_result_bytebuffer_(*pcbNative) BYTE **prgbNative,
-    _Out_ DWORD *pcbNative
+    BYTE *rgbWow,
+    DWORD cbWow,
+    BYTE **prgbNative,
+    DWORD *pcbNative
 ) {
     HRESULT hr = E_OUTOFMEMORY;
     PWSTR pszDomainUsername = nullptr;
@@ -535,9 +535,9 @@ HRESULT KerbInteractiveUnlockLogonRepackNative(
 
 // Concatonates pwszDomain and pwszUsername and places the result in *ppwszDomainUsername.
 HRESULT DomainUsernameStringAlloc(
-    _In_ PCWSTR pwszDomain,
-    _In_ PCWSTR pwszUsername,
-    _Outptr_result_nullonfailure_ PWSTR *ppwszDomainUsername
+    PCWSTR pwszDomain,
+    PCWSTR pwszUsername,
+    PWSTR *ppwszDomainUsername
 ) {
     HRESULT hr;
     *ppwszDomainUsername = nullptr;
@@ -560,8 +560,8 @@ HRESULT DomainUsernameStringAlloc(
     return hr;
 }
 
-HRESULT SplitDomainAndUsername(_In_ PCWSTR pszQualifiedUserName, _Outptr_result_nullonfailure_ PWSTR *ppszDomain,
-                               _Outptr_result_nullonfailure_ PWSTR *ppszUsername) {
+HRESULT SplitDomainAndUsername(PCWSTR pszQualifiedUserName, PWSTR *ppszDomain,
+                               PWSTR *ppszUsername) {
     HRESULT hr = E_UNEXPECTED;
     *ppszDomain = nullptr;
     *ppszUsername = nullptr;
