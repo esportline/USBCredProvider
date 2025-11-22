@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+; Désenregistrement du USB Credential Provider
+
+[-HKEY_CLASSES_ROOT\CLSID\{5fd3d285-0dd9-4362-8855-e0abaacd4af6}]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\{5fd3d285-0dd9-4362-8855-e0abaacd4af6}]
+
+; Optionnel: Supprimer la configuration (décommenter si souhaité)
+; [-HKEY_LOCAL_MACHINE\SOFTWARE\USBCredProvider]

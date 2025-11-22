@@ -1,0 +1,23 @@
+Windows Registry Editor Version 5.00
+
+; Enregistrement du USB Credential Provider
+[HKEY_CLASSES_ROOT\CLSID\{5fd3d285-0dd9-4362-8855-e0abaacd4af6}]
+@="USBCredentialProvider"
+
+[HKEY_CLASSES_ROOT\CLSID\{5fd3d285-0dd9-4362-8855-e0abaacd4af6}\InprocServer32]
+@="C:\\Program Files\\USBCredProvider\\USBCredProvider.dll"
+"ThreadingModel"="Apartment"
+
+; Enregistrement comme Credential Provider
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\{5fd3d285-0dd9-4362-8855-e0abaacd4af6}]
+@="USBCredentialProvider"
+
+; Configuration du provider
+[HKEY_LOCAL_MACHINE\SOFTWARE\USBCredProvider]
+"ServerUrl"="http://localhost:8080/serials"
+
+; Exemple de serials en fallback (REG_MULTI_SZ - éditer avec l'éditeur de registre)
+; Décommenter et configurer avec regedit si nécessaire
+; [HKEY_LOCAL_MACHINE\SOFTWARE\USBCredProvider]
+; "AuthorizedSerials"=hex(7):53,00,45,00,52,00,49,00,41,00,4c,00,31,00,00,00,\
+;   53,00,45,00,52,00,49,00,41,00,4c,00,32,00,00,00,00,00
