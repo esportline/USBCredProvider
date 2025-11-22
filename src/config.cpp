@@ -199,7 +199,7 @@ bool ConfigManager::LoadFromHttpServer() {
     char buffer[4096];
 
     while (WinHttpQueryDataAvailable(hRequest, &bytesAvailable) && bytesAvailable > 0) {
-        DWORD bytesToRead = min(bytesAvailable, sizeof(buffer));
+        DWORD bytesToRead = (bytesAvailable < sizeof(buffer)) ? bytesAvailable : sizeof(buffer);
 
         if (WinHttpReadData(hRequest, buffer, bytesToRead, &bytesRead)) {
             responseData.append(buffer, bytesRead);
