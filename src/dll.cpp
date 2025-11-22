@@ -4,9 +4,9 @@
 
 #include <windows.h>
 #include <unknwn.h>
+#include "guid.h"
 #include "dll.h"
 #include "helpers.h"
-#include "guid.h"
 
 static long g_cRef = 0;
 HINSTANCE g_hinst = NULL;
