@@ -52,6 +52,7 @@ target_link_libraries(USBCredProvider
     shlwapi
     winhttp
     cfgmgr32
+    secur32
 )
 
 # Set DLL properties
