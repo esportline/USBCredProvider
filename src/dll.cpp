@@ -11,14 +11,14 @@
 static long g_cRef = 0;
 HINSTANCE g_hinst = NULL;
 
-extern HRESULT CSample_CreateInstance(__in_opt REFIID riid, __deref_out void **ppv);
+extern HRESULT CSample_CreateInstance(_In_opt_ REFIID riid, _Outptr_ void **ppv);
 
 class CClassFactory : public IClassFactory {
 public:
     CClassFactory() : _cRef(1) {
     }
 
-    IFACEMETHODIMP QueryInterface(__in_opt REFIID riid, __deref_out void **ppv) override {
+    IFACEMETHODIMP QueryInterface(_In_opt_ REFIID riid, _Outptr_ void **ppv) override {
         static const QITAB qit[] = {
             QITABENT(CClassFactory, IClassFactory),
             {0},
@@ -38,7 +38,7 @@ public:
         return cRef;
     }
 
-    IFACEMETHODIMP CreateInstance(__in_opt IUnknown *pUnkOuter, __in_opt REFIID riid, __deref_out void **ppv) {
+    IFACEMETHODIMP CreateInstance(_In_opt_ IUnknown *pUnkOuter, _In_opt_ REFIID riid, _Outptr_ void **ppv) {
         HRESULT hr;
         if (!pUnkOuter) {
             hr = CSample_CreateInstance(riid, ppv);
@@ -49,7 +49,7 @@ public:
         return hr;
     }
 
-    IFACEMETHODIMP LockServer(__in_opt BOOL block) {
+    IFACEMETHODIMP LockServer(_In_opt_ BOOL block) {
         if (block) {
             DllAddRef();
         } else {
@@ -65,7 +65,7 @@ private:
     long _cRef;
 };
 
-HRESULT CClassFactory_CreateInstance(__in_opt REFCLSID rclsid, __in_opt REFIID riid, __deref_out void **ppv) {
+HRESULT CClassFactory_CreateInstance(_In_opt_ REFCLSID rclsid, _In_opt_ REFIID riid, _Outptr_ void **ppv) {
     *ppv = NULL;
     HRESULT hr;
     if (CLSID_CSample == rclsid) {
@@ -94,11 +94,11 @@ STDAPI DllCanUnloadNow() {
     return (g_cRef > 0) ? S_FALSE : S_OK;
 }
 
-STDAPI DllGetClassObject(__in_opt REFCLSID rclsid, __in_opt REFIID riid, __deref_out void **ppv) {
+STDAPI DllGetClassObject(_In_opt_ REFCLSID rclsid, _In_opt_ REFIID riid, _Outptr_ void **ppv) {
     return CClassFactory_CreateInstance(rclsid, riid, ppv);
 }
 
-STDAPI_(BOOL) DllMain(__in_opt HINSTANCE hinstDll, __in_opt DWORD dwReason, __in_opt void *) {
+STDAPI_(BOOL) DllMain(_In_opt_ HINSTANCE hinstDll, _In_opt_ DWORD dwReason, _In_opt_ void *) {
     switch (dwReason) {
         case DLL_PROCESS_ATTACH:
             DisableThreadLibraryCalls(hinstDll);

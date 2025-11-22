@@ -1,0 +1,3 @@
+/home/enimaloc/CLionProjects/USBCredProvider/build-ide/CMakeFiles/USBCredProvider.dir
+/home/enimaloc/CLionProjects/USBCredProvider/build-ide/CMakeFiles/edit_cache.dir
+/home/enimaloc/CLionProjects/USBCredProvider/build-ide/CMakeFiles/rebuild_cache.dir

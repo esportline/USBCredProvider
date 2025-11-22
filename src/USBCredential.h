@@ -24,46 +24,46 @@ public:
         return cRef;
     }
 
-    IFACEMETHODIMP QueryInterface(__in REFIID riid, __deref_out void** ppv);
+    IFACEMETHODIMP QueryInterface(_In_ REFIID riid, _Outptr_ void** ppv);
 
     // ICredentialProviderCredential
-    IFACEMETHODIMP Advise(__in ICredentialProviderCredentialEvents* pcpce);
+    IFACEMETHODIMP Advise(_In_ ICredentialProviderCredentialEvents* pcpce);
     IFACEMETHODIMP UnAdvise();
 
-    IFACEMETHODIMP SetSelected(__out BOOL* pbAutoLogon);
+    IFACEMETHODIMP SetSelected(_Out_ BOOL* pbAutoLogon);
     IFACEMETHODIMP SetDeselected();
 
-    IFACEMETHODIMP GetFieldState(__in DWORD dwFieldID,
-                                  __out CREDENTIAL_PROVIDER_FIELD_STATE* pcpfs,
-                                  __out CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE* pcpfis);
+    IFACEMETHODIMP GetFieldState(_In_ DWORD dwFieldID,
+                                  _Out_ CREDENTIAL_PROVIDER_FIELD_STATE* pcpfs,
+                                  _Out_ CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE* pcpfis);
 
-    IFACEMETHODIMP GetStringValue(__in DWORD dwFieldID, __deref_out PWSTR* ppwsz);
-    IFACEMETHODIMP GetBitmapValue(__in DWORD dwFieldID, __out HBITMAP* phbmp);
-    IFACEMETHODIMP GetCheckboxValue(__in DWORD dwFieldID, __out BOOL* pbChecked, __deref_out PWSTR* ppwszLabel);
-    IFACEMETHODIMP GetSubmitButtonValue(__in DWORD dwFieldID, __out DWORD* pdwAdjacentTo);
-    IFACEMETHODIMP GetComboBoxValueCount(__in DWORD dwFieldID, __out DWORD* pcItems, __out DWORD* pdwSelectedItem);
-    IFACEMETHODIMP GetComboBoxValueAt(__in DWORD dwFieldID, __in DWORD dwItem, __deref_out PWSTR* ppwszItem);
+    IFACEMETHODIMP GetStringValue(_In_ DWORD dwFieldID, _Outptr_ PWSTR* ppwsz);
+    IFACEMETHODIMP GetBitmapValue(_In_ DWORD dwFieldID, _Out_ HBITMAP* phbmp);
+    IFACEMETHODIMP GetCheckboxValue(_In_ DWORD dwFieldID, _Out_ BOOL* pbChecked, _Outptr_ PWSTR* ppwszLabel);
+    IFACEMETHODIMP GetSubmitButtonValue(_In_ DWORD dwFieldID, _Out_ DWORD* pdwAdjacentTo);
+    IFACEMETHODIMP GetComboBoxValueCount(_In_ DWORD dwFieldID, _Out_ DWORD* pcItems, _Out_ DWORD* pdwSelectedItem);
+    IFACEMETHODIMP GetComboBoxValueAt(_In_ DWORD dwFieldID, _In_ DWORD dwItem, _Outptr_ PWSTR* ppwszItem);
 
-    IFACEMETHODIMP SetStringValue(__in DWORD dwFieldID, __in PCWSTR pwz);
-    IFACEMETHODIMP SetCheckboxValue(__in DWORD dwFieldID, __in BOOL bChecked);
-    IFACEMETHODIMP SetComboBoxSelectedValue(__in DWORD dwFieldID, __in DWORD dwSelectedItem);
-    IFACEMETHODIMP CommandLinkClicked(__in DWORD dwFieldID);
+    IFACEMETHODIMP SetStringValue(_In_ DWORD dwFieldID, _In_ PCWSTR pwz);
+    IFACEMETHODIMP SetCheckboxValue(_In_ DWORD dwFieldID, _In_ BOOL bChecked);
+    IFACEMETHODIMP SetComboBoxSelectedValue(_In_ DWORD dwFieldID, _In_ DWORD dwSelectedItem);
+    IFACEMETHODIMP CommandLinkClicked(_In_ DWORD dwFieldID);
 
-    IFACEMETHODIMP GetSerialization(__out CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE* pcpgsr,
-                                     __out CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs,
-                                     __deref_out_opt PWSTR* ppwszOptionalStatusText,
-                                     __out CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon);
-    IFACEMETHODIMP ReportResult(__in NTSTATUS ntsStatus,
-                                 __in NTSTATUS ntsSubstatus,
-                                 __deref_out_opt PWSTR* ppwszOptionalStatusText,
-                                 __out CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon);
+    IFACEMETHODIMP GetSerialization(_Out_ CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE* pcpgsr,
+                                     _Out_ CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs,
+                                     _Outptr_opt_ PWSTR* ppwszOptionalStatusText,
+                                     _Out_ CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon);
+    IFACEMETHODIMP ReportResult(_In_ NTSTATUS ntsStatus,
+                                 _In_ NTSTATUS ntsSubstatus,
+                                 _Outptr_opt_ PWSTR* ppwszOptionalStatusText,
+                                 _Out_ CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon);
 
 public:
-    HRESULT Initialize(__in CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
-                        __in const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR* rgcpfd,
-                        __in const FIELD_STATE_PAIR* rgfsp,
-                        __in_opt PCWSTR pwzUsername,
-                        __in_opt PCWSTR pwzDomain);
+    HRESULT Initialize(_In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
+                        _In_ const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR* rgcpfd,
+                        _In_ const FIELD_STATE_PAIR* rgfsp,
+                        _In_opt_ PCWSTR pwzUsername,
+                        _In_opt_ PCWSTR pwzDomain);
     CUSBCredential();
 
     virtual ~CUSBCredential();
@@ -73,7 +73,7 @@ private:
     HRESULT CheckUSBPresence();
 
     // Récupère le nom d'utilisateur actuel de Windows
-    HRESULT GetCurrentUsername(__deref_out PWSTR* ppwszUsername);
+    HRESULT GetCurrentUsername(_Outptr_ PWSTR* ppwszUsername);
 
 private:
     LONG _cRef;

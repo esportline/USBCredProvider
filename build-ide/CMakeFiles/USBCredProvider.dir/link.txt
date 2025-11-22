@@ -1,0 +1,3 @@
+/usr/bin/cmake -E rm -f CMakeFiles/USBCredProvider.dir/objects.a
+/usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/USBCredProvider.dir/objects.a @CMakeFiles/USBCredProvider.dir/objects1.rsp
+/usr/bin/x86_64-w64-mingw32-g++  -static-libgcc -static-libstdc++ -static-libgcc -static-libstdc++ -g  -static-libgcc -static-libstdc++ -static-libgcc -static-libstdc++ /home/enimaloc/CLionProjects/USBCredProvider/USBCredProvider.def -shared -o bin/libUSBCredProvider.dll -Wl,--out-implib,libUSBCredProvider.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles/USBCredProvider.dir/objects.a -Wl,--no-whole-archive @CMakeFiles/USBCredProvider.dir/linkLibs.rsp

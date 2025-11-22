@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/enimaloc/CLionProjects/USBCredProvider/build-ide",
+  "command": "/usr/bin/x86_64-w64-mingw32-g++ -DUNICODE -DUSBCredProvider_EXPORTS -DWIN32 -D_UNICODE -D_WIN32 -D__MINGW32__ -D__WIN32__ @CMakeFiles/USBCredProvider.dir/includes_CXX.rsp  -static-libgcc -static-libstdc++ -static-libgcc -static-libstdc++ -g -std=gnu++20 -o CMakeFiles/USBCredProvider.dir/USBCredProvider.cpp.obj -c /home/enimaloc/CLionProjects/USBCredProvider/USBCredProvider.cpp",
+  "file": "/home/enimaloc/CLionProjects/USBCredProvider/USBCredProvider.cpp",
+  "output": "CMakeFiles/USBCredProvider.dir/USBCredProvider.cpp.obj"
+},
+{
+  "directory": "/home/enimaloc/CLionProjects/USBCredProvider/build-ide",
+  "command": "/usr/bin/x86_64-w64-mingw32-g++ -DUNICODE -DUSBCredProvider_EXPORTS -DWIN32 -D_UNICODE -D_WIN32 -D__MINGW32__ -D__WIN32__ @CMakeFiles/USBCredProvider.dir/includes_CXX.rsp  -static-libgcc -static-libstdc++ -static-libgcc -static-libstdc++ -g -std=gnu++20 -o CMakeFiles/USBCredProvider.dir/USBCredProviderCredential.cpp.obj -c /home/enimaloc/CLionProjects/USBCredProvider/USBCredProviderCredential.cpp",
+  "file": "/home/enimaloc/CLionProjects/USBCredProvider/USBCredProviderCredential.cpp",
+  "output": "CMakeFiles/USBCredProvider.dir/USBCredProviderCredential.cpp.obj"
+},
+{
+  "directory": "/home/enimaloc/CLionProjects/USBCredProvider/build-ide",
+  "command": "/usr/bin/x86_64-w64-mingw32-g++ -DUNICODE -DUSBCredProvider_EXPORTS -DWIN32 -D_UNICODE -D_WIN32 -D__MINGW32__ -D__WIN32__ @CMakeFiles/USBCredProvider.dir/includes_CXX.rsp  -static-libgcc -static-libstdc++ -static-libgcc -static-libstdc++ -g -std=gnu++20 -o CMakeFiles/USBCredProvider.dir/USBDetector.cpp.obj -c /home/enimaloc/CLionProjects/USBCredProvider/USBDetector.cpp",
+  "file": "/home/enimaloc/CLionProjects/USBCredProvider/USBDetector.cpp",
+  "output": "CMakeFiles/USBCredProvider.dir/USBDetector.cpp.obj"
+},
+{
+  "directory": "/home/enimaloc/CLionProjects/USBCredProvider/build-ide",
+  "command": "/usr/bin/x86_64-w64-mingw32-g++ -DUNICODE -DUSBCredProvider_EXPORTS -DWIN32 -D_UNICODE -D_WIN32 -D__MINGW32__ -D__WIN32__ @CMakeFiles/USBCredProvider.dir/includes_CXX.rsp  -static-libgcc -static-libstdc++ -static-libgcc -static-libstdc++ -g -std=gnu++20 -o CMakeFiles/USBCredProvider.dir/Helpers.cpp.obj -c /home/enimaloc/CLionProjects/USBCredProvider/Helpers.cpp",
+  "file": "/home/enimaloc/CLionProjects/USBCredProvider/Helpers.cpp",
+  "output": "CMakeFiles/USBCredProvider.dir/Helpers.cpp.obj"
+},
+{
+  "directory": "/home/enimaloc/CLionProjects/USBCredProvider/build-ide",
+  "command": "/usr/bin/x86_64-w64-mingw32-g++ -DUNICODE -DUSBCredProvider_EXPORTS -DWIN32 -D_UNICODE -D_WIN32 -D__MINGW32__ -D__WIN32__ @CMakeFiles/USBCredProvider.dir/includes_CXX.rsp  -static-libgcc -static-libstdc++ -static-libgcc -static-libstdc++ -g -std=gnu++20 -o CMakeFiles/USBCredProvider.dir/Dll.cpp.obj -c /home/enimaloc/CLionProjects/USBCredProvider/Dll.cpp",
+  "file": "/home/enimaloc/CLionProjects/USBCredProvider/Dll.cpp",
+  "output": "CMakeFiles/USBCredProvider.dir/Dll.cpp.obj"
+}
+]

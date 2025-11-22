@@ -24,24 +24,24 @@ public:
         return cRef;
     }
 
-    IFACEMETHODIMP QueryInterface(__in REFIID riid, __deref_out void** ppv);
+    IFACEMETHODIMP QueryInterface(_In_ REFIID riid, _Outptr_ void** ppv);
 
     // ICredentialProvider
-    IFACEMETHODIMP SetUsageScenario(__in CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus, __in DWORD dwFlags);
-    IFACEMETHODIMP SetSerialization(__in const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs);
+    IFACEMETHODIMP SetUsageScenario(_In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus, _In_ DWORD dwFlags);
+    IFACEMETHODIMP SetSerialization(_In_ const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs);
 
-    IFACEMETHODIMP Advise(__in ICredentialProviderEvents* pcpe, __in UINT_PTR upAdviseContext);
+    IFACEMETHODIMP Advise(_In_ ICredentialProviderEvents* pcpe, _In_ UINT_PTR upAdviseContext);
     IFACEMETHODIMP UnAdvise();
 
-    IFACEMETHODIMP GetFieldDescriptorCount(__out DWORD* pdwCount);
-    IFACEMETHODIMP GetFieldDescriptorAt(__in DWORD dwIndex, __deref_out CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR** ppcpfd);
+    IFACEMETHODIMP GetFieldDescriptorCount(_Out_ DWORD* pdwCount);
+    IFACEMETHODIMP GetFieldDescriptorAt(_In_ DWORD dwIndex, _Outptr_ CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR** ppcpfd);
 
-    IFACEMETHODIMP GetCredentialCount(__out DWORD* pdwCount,
-                                       __out DWORD* pdwDefault,
-                                       __out BOOL* pbAutoLogonWithDefault);
-    IFACEMETHODIMP GetCredentialAt(__in DWORD dwIndex, __deref_out ICredentialProviderCredential** ppcpc);
+    IFACEMETHODIMP GetCredentialCount(_Out_ DWORD* pdwCount,
+                                       _Out_ DWORD* pdwDefault,
+                                       _Out_ BOOL* pbAutoLogonWithDefault);
+    IFACEMETHODIMP GetCredentialAt(_In_ DWORD dwIndex, _Outptr_ ICredentialProviderCredential** ppcpc);
 
-    friend HRESULT CSample_CreateInstance(__in REFIID riid, __deref_out void** ppv);
+    friend HRESULT CSample_CreateInstance(_In_ REFIID riid, _Outptr_ void** ppv);
 
 protected:
     CUSBCredentialProvider();

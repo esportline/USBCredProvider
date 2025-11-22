@@ -42,11 +42,11 @@ CUSBCredential::~CUSBCredential() {
 }
 
 HRESULT CUSBCredential::Initialize(
-    __in CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
-    __in const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR* rgcpfd,
-    __in const FIELD_STATE_PAIR* rgfsp,
-    __in_opt PCWSTR pwzUsername,
-    __in_opt PCWSTR pwzDomain) {
+    _In_ CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus,
+    _In_ const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR* rgcpfd,
+    _In_ const FIELD_STATE_PAIR* rgfsp,
+    _In_opt_ PCWSTR pwzUsername,
+    _In_opt_ PCWSTR pwzDomain) {
 
     _cpus = cpus;
 
@@ -102,7 +102,7 @@ HRESULT CUSBCredential::Initialize(
     return hr;
 }
 
-HRESULT CUSBCredential::QueryInterface(__in REFIID riid, __deref_out void** ppv) {
+HRESULT CUSBCredential::QueryInterface(_In_ REFIID riid, _Outptr_ void** ppv) {
     static const QITAB qit[] = {
         QITABENT(CUSBCredential, ICredentialProviderCredential),
         {0},
@@ -110,7 +110,7 @@ HRESULT CUSBCredential::QueryInterface(__in REFIID riid, __deref_out void** ppv)
     return QISearch(this, qit, riid, ppv);
 }
 
-HRESULT CUSBCredential::Advise(__in ICredentialProviderCredentialEvents* pcpce) {
+HRESULT CUSBCredential::Advise(_In_ ICredentialProviderCredentialEvents* pcpce) {
     if (_pCredProvCredentialEvents != nullptr) {
         _pCredProvCredentialEvents->Release();
     }
@@ -127,7 +127,7 @@ HRESULT CUSBCredential::UnAdvise() {
     return S_OK;
 }
 
-HRESULT CUSBCredential::SetSelected(__out BOOL* pbAutoLogon) {
+HRESULT CUSBCredential::SetSelected(_Out_ BOOL* pbAutoLogon) {
     *pbAutoLogon = FALSE;
 
     // Vérifier si une clé USB autorisée est présente
@@ -157,9 +157,9 @@ HRESULT CUSBCredential::SetDeselected() {
 }
 
 HRESULT CUSBCredential::GetFieldState(
-    __in DWORD dwFieldID,
-    __out CREDENTIAL_PROVIDER_FIELD_STATE* pcpfs,
-    __out CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE* pcpfis) {
+    _In_ DWORD dwFieldID,
+    _Out_ CREDENTIAL_PROVIDER_FIELD_STATE* pcpfs,
+    _Out_ CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE* pcpfis) {
 
     if (dwFieldID < ARRAYSIZE(_rgFieldStatePairs)) {
         *pcpfs = _rgFieldStatePairs[dwFieldID].cpfs;
@@ -170,7 +170,7 @@ HRESULT CUSBCredential::GetFieldState(
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::GetStringValue(__in DWORD dwFieldID, __deref_out PWSTR* ppwsz) {
+HRESULT CUSBCredential::GetStringValue(_In_ DWORD dwFieldID, _Outptr_ PWSTR* ppwsz) {
     *ppwsz = nullptr;
 
     if (dwFieldID < ARRAYSIZE(_rgFieldStrings) && _rgFieldStrings[dwFieldID]) {
@@ -180,7 +180,7 @@ HRESULT CUSBCredential::GetStringValue(__in DWORD dwFieldID, __deref_out PWSTR* 
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::GetBitmapValue(__in DWORD dwFieldID, __out HBITMAP* phbmp) {
+HRESULT CUSBCredential::GetBitmapValue(_In_ DWORD dwFieldID, _Out_ HBITMAP* phbmp) {
     if (dwFieldID == SFI_TILEIMAGE) {
         *phbmp = nullptr;
         return S_OK;
@@ -188,7 +188,7 @@ HRESULT CUSBCredential::GetBitmapValue(__in DWORD dwFieldID, __out HBITMAP* phbm
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::GetCheckboxValue(__in DWORD dwFieldID, __out BOOL* pbChecked, __deref_out PWSTR* ppwszLabel) {
+HRESULT CUSBCredential::GetCheckboxValue(_In_ DWORD dwFieldID, _Out_ BOOL* pbChecked, _Outptr_ PWSTR* ppwszLabel) {
     *ppwszLabel = nullptr;
     *pbChecked = FALSE;
 
@@ -200,7 +200,7 @@ HRESULT CUSBCredential::GetCheckboxValue(__in DWORD dwFieldID, __out BOOL* pbChe
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::GetSubmitButtonValue(__in DWORD dwFieldID, __out DWORD* pdwAdjacentTo) {
+HRESULT CUSBCredential::GetSubmitButtonValue(_In_ DWORD dwFieldID, _Out_ DWORD* pdwAdjacentTo) {
     if (dwFieldID == SFI_SUBMIT_BUTTON) {
         *pdwAdjacentTo = SFI_PASSWORD;
         return S_OK;
@@ -208,7 +208,7 @@ HRESULT CUSBCredential::GetSubmitButtonValue(__in DWORD dwFieldID, __out DWORD* 
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::GetComboBoxValueCount(__in DWORD dwFieldID, __out DWORD* pcItems, __out DWORD* pdwSelectedItem) {
+HRESULT CUSBCredential::GetComboBoxValueCount(_In_ DWORD dwFieldID, _Out_ DWORD* pcItems, _Out_ DWORD* pdwSelectedItem) {
     if (dwFieldID == SFI_COMBOBOX) {
         *pcItems = ARRAYSIZE(s_rgComboBoxStrings);
         *pdwSelectedItem = _dwComboIndex;
@@ -217,7 +217,7 @@ HRESULT CUSBCredential::GetComboBoxValueCount(__in DWORD dwFieldID, __out DWORD*
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::GetComboBoxValueAt(__in DWORD dwFieldID, __in DWORD dwItem, __deref_out PWSTR* ppwszItem) {
+HRESULT CUSBCredential::GetComboBoxValueAt(_In_ DWORD dwFieldID, _In_ DWORD dwItem, _Outptr_ PWSTR* ppwszItem) {
     *ppwszItem = nullptr;
 
     if (dwFieldID == SFI_COMBOBOX && dwItem < ARRAYSIZE(s_rgComboBoxStrings)) {
@@ -227,7 +227,7 @@ HRESULT CUSBCredential::GetComboBoxValueAt(__in DWORD dwFieldID, __in DWORD dwIt
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::SetStringValue(__in DWORD dwFieldID, __in PCWSTR pwz) {
+HRESULT CUSBCredential::SetStringValue(_In_ DWORD dwFieldID, _In_ PCWSTR pwz) {
     if (dwFieldID == SFI_PASSWORD || dwFieldID == SFI_EDIT_TEXT) {
         CoTaskMemFree(_rgFieldStrings[dwFieldID]);
         return SHStrDupW(pwz, &_rgFieldStrings[dwFieldID]);
@@ -235,7 +235,7 @@ HRESULT CUSBCredential::SetStringValue(__in DWORD dwFieldID, __in PCWSTR pwz) {
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::SetCheckboxValue(__in DWORD dwFieldID, __in BOOL bChecked) {
+HRESULT CUSBCredential::SetCheckboxValue(_In_ DWORD dwFieldID, _In_ BOOL bChecked) {
     if (dwFieldID == SFI_CHECKBOX) {
         _fChecked = bChecked;
         return S_OK;
@@ -243,7 +243,7 @@ HRESULT CUSBCredential::SetCheckboxValue(__in DWORD dwFieldID, __in BOOL bChecke
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::SetComboBoxSelectedValue(__in DWORD dwFieldID, __in DWORD dwSelectedItem) {
+HRESULT CUSBCredential::SetComboBoxSelectedValue(_In_ DWORD dwFieldID, _In_ DWORD dwSelectedItem) {
     if (dwFieldID == SFI_COMBOBOX) {
         _dwComboIndex = dwSelectedItem;
         return S_OK;
@@ -251,15 +251,15 @@ HRESULT CUSBCredential::SetComboBoxSelectedValue(__in DWORD dwFieldID, __in DWOR
     return E_INVALIDARG;
 }
 
-HRESULT CUSBCredential::CommandLinkClicked(__in DWORD dwFieldID) {
+HRESULT CUSBCredential::CommandLinkClicked(_In_ DWORD dwFieldID) {
     return E_NOTIMPL;
 }
 
 HRESULT CUSBCredential::GetSerialization(
-    __out CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE* pcpgsr,
-    __out CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs,
-    __deref_out_opt PWSTR* ppwszOptionalStatusText,
-    __out CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon) {
+    _Out_ CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE* pcpgsr,
+    _Out_ CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION* pcpcs,
+    _Outptr_opt_ PWSTR* ppwszOptionalStatusText,
+    _Out_ CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon) {
 
     *pcpgsr = CPGSR_NO_CREDENTIAL_NOT_FINISHED;
     *ppwszOptionalStatusText = nullptr;
@@ -317,10 +317,10 @@ HRESULT CUSBCredential::GetSerialization(
 }
 
 HRESULT CUSBCredential::ReportResult(
-    __in NTSTATUS ntsStatus,
-    __in NTSTATUS ntsSubstatus,
-    __deref_out_opt PWSTR* ppwszOptionalStatusText,
-    __out CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon) {
+    _In_ NTSTATUS ntsStatus,
+    _In_ NTSTATUS ntsSubstatus,
+    _Outptr_opt_ PWSTR* ppwszOptionalStatusText,
+    _Out_ CREDENTIAL_PROVIDER_STATUS_ICON* pcpsiOptionalStatusIcon) {
 
     *ppwszOptionalStatusText = nullptr;
     *pcpsiOptionalStatusIcon = CPSI_NONE;
@@ -347,7 +347,7 @@ HRESULT CUSBCredential::CheckUSBPresence() {
     return E_FAIL;
 }
 
-HRESULT CUSBCredential::GetCurrentUsername(__deref_out PWSTR* ppwszUsername) {
+HRESULT CUSBCredential::GetCurrentUsername(_Outptr_ PWSTR* ppwszUsername) {
     *ppwszUsername = nullptr;
 
     wchar_t username[UNLEN + 1];
