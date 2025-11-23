@@ -8,6 +8,7 @@
 #include <cfgmgr32.h>
 #include <initguid.h>
 #include <usbiodef.h>
+#include <ntddstor.h>
 #include <algorithm>
 
 #pragma comment(lib, "setupapi.lib")

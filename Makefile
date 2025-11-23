@@ -90,7 +90,7 @@ endif
 ifeq ($(PLATFORM),linux)
     DLL_LDFLAGS := -shared -static-libgcc -static-libstdc++
     DLL_LIBS := -ladvapi32 -lole32 -loleaut32 -lcredui -lsetupapi -luuid -lshlwapi -lwinhttp -lcfgmgr32 -lsecur32
-    TOOL_LDFLAGS := -static-libgcc -static-libstdc++
+    TOOL_LDFLAGS := -municode -static-libgcc -static-libstdc++
     TOOL_LIBS := -lsetupapi -lcfgmgr32
 else ifdef MSVC
     DLL_LIBS := advapi32.lib ole32.lib oleaut32.lib credui.lib setupapi.lib uuid.lib shlwapi.lib winhttp.lib cfgmgr32.lib secur32.lib
@@ -98,7 +98,7 @@ else ifdef MSVC
 else
     DLL_LDFLAGS := -shared -static-libgcc -static-libstdc++
     DLL_LIBS := -ladvapi32 -lole32 -loleaut32 -lcredui -lsetupapi -luuid -lshlwapi -lwinhttp -lcfgmgr32 -lsecur32
-    TOOL_LDFLAGS := -static-libgcc -static-libstdc++
+    TOOL_LDFLAGS := -municode -static-libgcc -static-libstdc++
     TOOL_LIBS := -lsetupapi -lcfgmgr32
 endif
 
